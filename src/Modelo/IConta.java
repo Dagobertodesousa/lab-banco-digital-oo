@@ -1,6 +1,8 @@
 package Modelo;
 
 public interface IConta {
+
+	boolean tetoConta(double valor);
 	
 	void sacar(double valor);
 	

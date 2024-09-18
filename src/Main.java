@@ -4,27 +4,34 @@ import Conta.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Cliente venilton = new Cliente();
-		venilton.setNome("Venilton");
 
-		Cliente dagoberto = new Cliente("dagoberto");
+		Conta filerminoC = new ContaCorrente(new Cliente("Filermino Santana"));
+		Conta jasonC = new ContaCorrente(new Cliente("Jason Malcon"));
+		Conta pauloP = new ContaPoupanca(new Cliente("Paulo Ventura"));
+		Conta deilsonC = new ContaCorrente(new Cliente("Deilson Bastos"));
 
-		Cliente deconhecido = new Cliente();
-		Conta cc = new ContaCorrente(venilton);
-		Conta dagobertoCorrente = new ContaCorrente(dagoberto);
-		Conta poupanca = new ContaPoupanca(venilton);
-		Conta desconhecidoPoupanca = new ContaPoupanca(deconhecido);
+		deilsonC.depositar(2500.99);
+		jasonC.depositar(2500.99);
+		pauloP.depositar(2500.99);
+		filerminoC.depositar(2500.99);
+		jasonC.transferir(100, pauloP);
 
-		cc.depositar(100);
-		cc.transferir(100, poupanca);
-
-		dagobertoCorrente.imprimirExtrato();
-		desconhecidoPoupanca.imprimirExtrato();
+		jasonC.imprimirExtrato();
+		filerminoC.imprimirExtrato();
+		deilsonC.imprimirExtrato();
+		pauloP.imprimirExtrato();
 		
-		cc.transferir(150, desconhecidoPoupanca);
+		filerminoC.transferir(2430, pauloP);
 
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
+		filerminoC.imprimirExtrato();
+
+		filerminoC.transferir(2.0, deilsonC);
+
+		jasonC.transferir(2100.09, filerminoC);
+		pauloP.transferir(2100.09, filerminoC);
+		deilsonC.transferir(2100.09, filerminoC);
+
+		jasonC.imprimirExtrato();
+		filerminoC.imprimirExtrato();
 	}
-
 }
