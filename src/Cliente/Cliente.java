@@ -1,7 +1,16 @@
+package Cliente;
 
 public class Cliente {
 
 	private String nome;
+
+	public Cliente(){
+		this.nome = "desconhecido";
+	}
+
+	public Cliente(String nome){
+		this.nome = nome;
+	}
 
 	public String getNome() {
 		return nome;

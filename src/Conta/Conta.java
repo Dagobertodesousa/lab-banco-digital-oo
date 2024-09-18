@@ -1,3 +1,6 @@
+package Conta;
+import Cliente.Cliente;
+import Modelo.IConta;
 
 public abstract class Conta implements IConta {
 	
@@ -15,6 +18,13 @@ public abstract class Conta implements IConta {
 		this.cliente = cliente;
 	}
 
+	public boolean limiteSaque(double valor){
+		if (getSaldo() >= valor){
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public void sacar(double valor) {
 		saldo -= valor;
@@ -27,8 +37,13 @@ public abstract class Conta implements IConta {
 
 	@Override
 	public void transferir(double valor, IConta contaDestino) {
-		this.sacar(valor);
-		contaDestino.depositar(valor);
+		if (this.limiteSaque(valor)) {
+			this.sacar(valor);
+			contaDestino.depositar(valor);
+			System.out.println("tranferência realizada");
+		} else {
+			System.out.println("valor superior ao limite para saque");
+		}
 	}
 
 	public int getAgencia() {
